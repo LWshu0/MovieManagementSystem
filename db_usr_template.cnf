@@ -1,0 +1,5 @@
+[client]
+database = moviemanagement
+user = your user name
+password = your password
+default-character-set = utf8
