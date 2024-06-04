@@ -14,13 +14,12 @@ D:\miniconda\miniconda_3\envs\django\python.exe -m venv .venv
 
 ![1717311664275](image/quick_start/1717311664275.png)
 
-## 安装 django 和 mysqlclient
+## 安装依赖库
 
-在上一步的基础上, 运行下列命令完成安装
+在上一步的基础上, 运行下列命令自动完成requirements.txt文件中依赖库的安装。Windows系统中，mysqlclient安装时可能会出错，可能需要根据报错信息安装其它内容
 
 ```
-pip install django
-pip install mysqlclient
+pip install -r requirements.txt
 ```
 
 ## 创建数据库
@@ -42,3 +41,11 @@ create database moviemanagement character set utf8;
 ```
 python manage.py migrate
 ```
+
+## 执行项目
+在完成上面的步骤后，在power shell运行下面指令就可以执行项目
+
+```
+python .\manage.py runserver
+```
+运行成功后，运行信息会给出网址`http://127.0.0.1:8000/`，运行该网址即可
