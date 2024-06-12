@@ -1,0 +1,77 @@
+{%  load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册界面</title>
+    <link rel="stylesheet" href="{% static 'user/css/login.css' %}"/>
+    <style>
+        body{
+            background-image: url("{% static 'user/img/landscape.jpg' %}");
+            background-size: cover;
+        }
+        .selectStyle {
+            width: 360px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: aliceblue;
+            border: 1px solid white;
+            outline: none;
+            /*获得焦点时无任何显示*/
+            text-indent: 1em;
+        }
+
+        .selectStyle option {
+            font-size: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <form action="" method="post">
+        <div id="main">
+            <h1>欢迎注册</h1>
+
+            <p class="register" style="font-size: 15px;">已有账号？<a href="/user/login" style="font-size: 15px;">登录</a></p>
+            <p class="p1">
+                用&nbsp;户&nbsp;名:<input type="text" id="username" placeholder="请输入用户名" class="inp0" style="font-size: 15px;">
+            </p>
+            <p class="p1">
+                密&emsp;&emsp;码:<input type="password" id="password" placeholder="请输入密码" class="inp0" style="font-size: 15px;">
+            </p>
+            <p class="p1">
+                性&emsp;&emsp;别:
+                <select id="gender" class="selectStyle">
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="其他">其他</option>
+                </select>
+            </p>
+            <p class="p1">
+                <button type="submit" id="submitBtn" class="login_disable">注册</button>
+            </p>
+            <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ msg }} </span>
+            </p>
+        </div>
+    </form>
+</body>
+
+<script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    const submitBtn = document.getElementById('submitBtn');
+    function updateButtonState() {
+        if (usernameInput.value && passwordInput.value) {
+            submitBtn.classList.remove('login_disable');
+            submitBtn.classList.add('login_enable');
+        } else {
+            submitBtn.classList.remove('login_enable');
+            submitBtn.classList.add('login_disable');
+        }
+    }
+    usernameInput.addEventListener('input', updateButtonState);
+    passwordInput.addEventListener('input', updateButtonState);
+</script>
+
+</html>
