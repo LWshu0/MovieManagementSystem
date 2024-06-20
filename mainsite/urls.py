@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from user import views as user_view
 from manager import views as manager_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', user_view.initial),
     path('admin/', admin.site.urls),
     path("user/", include("user.urls")),
     path("manager/", include("manager.urls"))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
