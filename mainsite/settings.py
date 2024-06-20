@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
+    'manager.apps.ManagerConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,9 +125,15 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     str(BASE_DIR / 'user/static'),
+    str(BASE_DIR / 'manager/static'),
+    str(BASE_DIR / 'static')
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# media_confige
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

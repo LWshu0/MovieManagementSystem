@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Manager 管理员界面</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li {% if site == 'movie' %} class="active" {% endif %}><a href="/manager/movie/">电影管理</a></li>
+                <li {% if site == 'director' %} class="active" {% endif %}><a href="/manager/director/">导演管理</a></li>
+                <li {% if site == 'user' %} class="active" {% endif %}><a href="/manager/user/">用户管理</a></li>
+                <li {% if site == 'review' %} class="active" {% endif %}><a href="/manager/review/">评论管理</a></li>
+                <li {% if site == 'like' %} class="active" {% endif %}><a href="/manager/like/">收藏管理 </a></li>
+                <li {% if site == 'actor' %} class="active" {% endif %}><a href="/manager/actor/">演员管理</a></li>
+                <li {% if site == 'cast' %} class="active" {% endif %}><a href="/manager/cast/">出演管理</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/user/login/">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
