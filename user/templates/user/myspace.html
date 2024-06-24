@@ -18,8 +18,8 @@
 
         <div class='ribbon'>
             {% if username is None%}
-                <a href= '{% url 'user_myspace' user.id %}'><span>我的主页</span></a>
                 <a href='{% url 'user_home' user.id %}'><span>首页</span></a>
+                <a href= '{% url 'user_myspace' user.id %}'><span>我的主页</span></a>
                 <a href='/user/login'><span>退出登录</span></a>
             {% endif %}
         </div>
