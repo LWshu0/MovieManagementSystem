@@ -31,7 +31,7 @@
             </form>
         </div>
         <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/manager/cast_add/">
+            <a class="btn btn-success" href="/manager/cast_add">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 新建出演
             </a>
@@ -58,7 +58,7 @@
                                 <td>{{ cast.movie.moviename }}</td>
                                 <td>{{ cast.actor.actorname }}</td>
                                 <td>
-                                    <a class="btn btn-danger btn-xs" href="/manager/cast_delete/?del_id={{ cast.id }}">删除</a>
+                                    <a class="btn btn-danger btn-xs" href="/manager/cast_delete?del_id={{ cast.id }}">删除</a>
                                 </td>
                             </tr>
                         {% endfor %}

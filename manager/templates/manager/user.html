@@ -30,7 +30,7 @@
             </form>
         </div>
         <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/manager/user_add/">
+            <a class="btn btn-success" href="/manager/user_add">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 新建用户
             </a>
@@ -54,8 +54,8 @@
                         <td>{{ user.username }}</td>
                         <td>{{ user.gender }}</td>
                         <td>
-                            <a class="btn btn-primary btn-xs" href="/manager/user_update/?update_id={{ user.id }}">编辑</a>
-                            <a class="btn btn-danger btn-xs" href="/manager/user_delete/?del_id={{ user.id }}">删除</a>
+                            <a class="btn btn-primary btn-xs" href="/manager/user_update?update_id={{ user.id }}">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/manager/user_delete?del_id={{ user.id }}">删除</a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -31,7 +31,7 @@
             </form>
         </div>
         <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/manager/review_add/">
+            <a class="btn btn-success" href="/manager/review_add">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 新建评论
             </a>
@@ -59,8 +59,8 @@
                         <td>{{ review.comment |truncatechars:60}}</td>
                         <td>{{ review.rating }}</td>
                         <td>
-                            <a class="btn btn-primary btn-xs" href="/manager/review_update/?update_id={{ review.id }}">编辑</a>
-                            <a class="btn btn-danger btn-xs" href="/manager/review_delete/?del_id={{ review.id }}">删除</a>
+                            <a class="btn btn-primary btn-xs" href="/manager/review_update?update_id={{ review.id }}">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/manager/review_delete?del_id={{ review.id }}">删除</a>
                         </td>
                     </tr>
                 {% endfor %}

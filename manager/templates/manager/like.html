@@ -32,7 +32,7 @@
             </form>
         </div>
         <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/manager/like_add/">
+            <a class="btn btn-success" href="/manager/like_add">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                 新建收藏
             </a>
@@ -59,7 +59,7 @@
                                 <td>{{ like.user.username }}</td>
                                 <td>{{ like.movie.moviename }}</td>
                                 <td>
-                                    <a class="btn btn-danger btn-xs" href="/manager/like_delete/?del_id={{ like.id }}">取消收藏</a>
+                                    <a class="btn btn-danger btn-xs" href="/manager/like_delete?del_id={{ like.id }}">取消收藏</a>
                                 </td>
                             </tr>
                         {% endfor %}

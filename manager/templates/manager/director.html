@@ -30,7 +30,7 @@
             </form>
         </div>
         <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/manager/director_add/">
+            <a class="btn btn-success" href="/manager/director_add">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 新建导演
             </a>
@@ -68,8 +68,8 @@
                             {% endif %}
             </td>
                             <td>
-                                <a class="btn btn-primary btn-xs" href="/manager/director_update/?update_id={{ director.id }}">编辑</a>
-                                <a class="btn btn-danger btn-xs" href="/manager/director_delete/?del_id={{ director.id }}">删除</a>
+                                <a class="btn btn-primary btn-xs" href="/manager/director_update?update_id={{ director.id }}">编辑</a>
+                                <a class="btn btn-danger btn-xs" href="/manager/director_delete?del_id={{ director.id }}">删除</a>
                             </td>
                         </tr>
                     {% endfor %}

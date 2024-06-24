@@ -40,7 +40,7 @@ def manager_director_add(request):
         photo = request.FILES.get("photo")
         Director.objects.create(directorname=directorname, gender=gender, birthday=birthday, nationality=nationality,
                                 bio=bio, photo=photo)
-        return redirect("/manager/director/")
+        return redirect("/manager/director")
 
 
 def manager_director_delete(request):
@@ -51,7 +51,7 @@ def manager_director_delete(request):
         if os.path.isfile(photo_path):  # 确保文件存在
             os.remove(photo_path)  # 删除文件
     director.delete()  # 删除 Director 实例
-    return redirect("/manager/director/")
+    return redirect("/manager/director")
 
 
 def manager_director_update(request):
@@ -72,7 +72,7 @@ def manager_director_update(request):
         Director.objects.filter(id=director_id).update(birthday=birthday)
         Director.objects.filter(id=director_id).update(nationality=nationality)
         Director.objects.filter(id=director_id).update(bio=bio)
-        return redirect("/manager/director/")
+        return redirect("/manager/director")
 
 
 # 电影——————————————————————————————————————————————————————————————————
@@ -109,7 +109,7 @@ def manager_movie_add(request):
         Movie.objects.create(moviename=moviename, director=director, type=movie_type,
                              time=time, area=area, length=length, web=web, bio=bio, photo=photo
                              )
-        return redirect("/manager/movie/")
+        return redirect("/manager/movie")
 
 
 def manager_movie_delete(request):
@@ -120,7 +120,7 @@ def manager_movie_delete(request):
         if os.path.isfile(photo_path):  # 确保文件存在
             os.remove(photo_path)  # 删除文件
     movie.delete()  # 删除 Movie 实例
-    return redirect("/manager/movie/")  # 重定向到电影管理页面
+    return redirect("/manager/movie")  # 重定向到电影管理页面
 
 
 def manager_movie_update(request):
@@ -149,7 +149,7 @@ def manager_movie_update(request):
             movie = Movie.objects.get(id=movie_id)
             movie.photo.save(photo.name, photo)
 
-        return redirect("/manager/movie/")
+        return redirect("/manager/movie")
 
 
 # 用户管理-------------------------------------------------------------------------
@@ -180,14 +180,14 @@ def manager_user_add(request):
         password = hashlib.md5(res.encode("utf-8")).hexdigest()
         User.objects.create(username=username, password=password, gender=gender)
 
-        return redirect("/manager/user/")
+        return redirect("/manager/user")
 
 
 # 删除用户
 def manager_user_delete(request):
     del_id = request.GET.get("del_id")
     User.objects.filter(id=del_id).delete()
-    return redirect("/manager/user/")
+    return redirect("/manager/user")
 
 
 # 更新用户
@@ -213,7 +213,7 @@ def manager_user_update(request):
         user.gender = gender
         user.save()
 
-        return redirect("/manager/user/")
+        return redirect("/manager/user")
 
 
 # 评论-------------------------------------------------------------
@@ -246,14 +246,14 @@ def manager_review_add(request):
         user = User.objects.get(id=user_id)
         movie = Movie.objects.get(id=movie_id)
         Review.objects.create(user=user, movie=movie, comment=comment, rating=rating)
-        return redirect("/manager/review/")
+        return redirect("/manager/review")
 
 
 # 删除评论
 def manager_review_delete(request):
     del_id = request.GET.get("del_id")
     Review.objects.filter(id=del_id).delete()
-    return redirect("/manager/review/")
+    return redirect("/manager/review")
 
 
 # 更新评论
@@ -271,7 +271,7 @@ def manager_review_update(request):
         comment = request.POST.get("comment")
         rating = request.POST.get("rating")
         Review.objects.filter(id=review_id).update(user_id=user_id, movie_id=movie_id, comment=comment, rating=rating)
-        return redirect("/manager/review/")
+        return redirect("/manager/review")
 
 # 收藏------------------------------------------------------------------------
 
@@ -298,7 +298,7 @@ def manager_like_add(request):
         user = User.objects.get(id=user_id)
         movie = Movie.objects.get(id=movie_id)
         Like.objects.create(user=user, movie=movie)
-        return redirect("/manager/like/")
+        return redirect("/manager/like")
 
 
 def manager_like_delete(request):
@@ -306,7 +306,7 @@ def manager_like_delete(request):
     like = Like.objects.filter(id=del_id).first()
     if like:
         like.delete()
-    return redirect("/manager/like/")
+    return redirect("/manager/like")
 
 #演员--------------------------------------------------------------
 def manager_actor(request):
@@ -350,7 +350,7 @@ def manager_actor_add(request):
             photo=photo
         )
 
-        return redirect("/manager/actor/")
+        return redirect("/manager/actor")
 
 
 # Delete Actor
@@ -362,7 +362,7 @@ def manager_actor_delete(request):
     except ObjectDoesNotExist:
         pass
 
-    return redirect("/manager/actor/")
+    return redirect("/manager/actor")
 
 
 # Update Actor
@@ -389,7 +389,7 @@ def manager_actor_update(request):
 
         actor.save()
 
-        return redirect("/manager/actor/")
+        return redirect("/manager/actor")
 
 
 # Cast List and Search
@@ -427,7 +427,7 @@ def manager_cast_add(request):
             actor_id=actor_id
         )
 
-        return redirect("/manager/cast/")
+        return redirect("/manager/cast")
 
 
 
@@ -440,4 +440,4 @@ def manager_cast_delete(request):
     except ObjectDoesNotExist:
         pass
 
-    return redirect("/manager/cast/")
+    return redirect("/manager/cast")
