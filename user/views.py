@@ -107,3 +107,28 @@ def user_movie(request, userID, movieID):
             'actors': actors
         }
         return render(request, 'user/movie.html', context)
+    
+
+def add_to_favorites(request):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        movie = request.POST.get('movie')
+        user = request.POST.get('user')
+        movie = Movie.objects.get(id=movie)
+        user = User.objects.get(id=user)
+        Like.objects.create(user=user, movie=movie)
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False})
+
+
+def add_comment(request):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        user_id = request.POST.get('user_id')
+        movie_id = request.POST.get('movie_id')
+        comment_text = request.POST.get('comment')
+        rating = request.POST.get('rating')
+        movie = Movie.objects.get(id=movie_id)
+        user = User.objects.get(id=user_id)
+        Review.objects.create(user=user, movie=movie, comment=comment_text, rating=rating)
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False, 'message': '无效的请求'}, status=400)
