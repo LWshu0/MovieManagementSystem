@@ -29,19 +29,20 @@
 </head>
 <body>
     <form action="" method="post">
+        {% csrf_token %}
         <div id="main">
             <h1>欢迎注册</h1>
 
             <p class="register" style="font-size: 15px;">已有账号？<a href="/user/login" style="font-size: 15px;">登录</a></p>
             <p class="p1">
-                用&nbsp;户&nbsp;名:<input type="text" id="username" placeholder="请输入用户名" class="inp0" style="font-size: 15px;">
+                用&nbsp;户&nbsp;名:<input type="text" name="username" id="username" placeholder="请输入用户名" class="inp0" style="font-size: 15px;">
             </p>
             <p class="p1">
-                密&emsp;&emsp;码:<input type="password" id="password" placeholder="请输入密码" class="inp0" style="font-size: 15px;">
+                密&emsp;&emsp;码:<input type="password" name="password" id="password" placeholder="请输入密码" class="inp0" style="font-size: 15px;">
             </p>
             <p class="p1">
                 性&emsp;&emsp;别:
-                <select id="gender" class="selectStyle">
+                <select name="gender" id="gender" class="selectStyle">
                 <option value="男">男</option>
                 <option value="女">女</option>
                 <option value="其他">其他</option>

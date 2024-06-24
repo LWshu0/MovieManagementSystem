@@ -16,25 +16,24 @@
 </head>
 
 <body>
-    <form action="/user/login/" method="post">
+    <form action="" method="post">
+        {% csrf_token %}
         <div id="main">
             <h1>欢迎登录影评系统</h1>
-            <p class="register" style="font-size: 15px;">没有账号？<a href="/user/signup/" style="font-size: 15px;">注册</a></p>
-                    <p class="p1">
-                        用户名:<input type="text" id="username" placeholder="请输入用户名" class="inp0"
-                            style="font-size: 15px;">
-                    </p>
-                    <p class="p1">
-                        密&emsp;码:<input type="password" id="password" placeholder="请输入密码" class="inp0"
-                            style="font-size: 15px;">
-                    </p>
-                    <p class="p1">
+            <p class="register" style="font-size: 15px;">没有账号？<a href="/user/signup" style="font-size: 15px;">注册</a></p>
+            <p class="p1">
+                用户名:<input type="text" name="username" id="username" placeholder="请输入用户名" class="inp0" style="font-size: 15px;"/>
+            </p>
+            <p class="p1">
+                密&emsp;码:<input type="password" name="password" id="password" placeholder="请输入密码" class="inp0" style="font-size: 15px;"/>
+            </p>
+            <p class="p1">
 
-                        <button type="submit" id="submitBtn" class="login_disable" disabled>登录</button>
+                <button type="submit" id="submitBtn" class="login_disable">登录</button>
 
-                    </p>
-                    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tip }} </span>
-                    <span2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tip2 }} </span2>
+            </p>
+            <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tip }} </span>
+            <span2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tip2 }} </span2>
         </div>
     </form>
 </body>

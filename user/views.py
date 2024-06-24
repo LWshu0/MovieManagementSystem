@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 import hashlib
+from django.views.decorators.csrf import csrf_protect
+
 # model
 from .models import User, Movie
 
@@ -12,11 +14,14 @@ def initial(request):
     return redirect("/user/login")
 
 #用户界面-----------------------------------------------------------------------------
+@csrf_protect
 def user_login(request):
     method = request.method
     if method == "GET":
+        print('user login get')
         return render(request, "user/login.html")
     elif method == "POST":
+        print('user login post')
         username = request.POST.get("username")
         password = request.POST.get("password")
         try:
@@ -26,22 +31,24 @@ def user_login(request):
             password = hashlib.md5(res.encode("utf-8")).hexdigest()
             if password == user.password:
                 if user.username == "manager":
-                    return redirect("/manager/director/")
+                    return redirect("/manager/director")
                 else:
-                    return redirect("/user/home/", {"user_id": user_id})
+                    return redirect("/user/home", {"user_id": user_id})
             else:
                 return render(request, "user/login.html", {"tip": "密码错误！"})
         except user.models.User.DoesNotExist:
             return render(request, "user/login.html", {"tip": "用户名不存在！"})
         
-
+@csrf_protect
 def user_signup(request):
     if request.method == "GET":
         return render(request, "user/signup.html")
     elif request.method == "POST":
         get_post = request.POST
         username = get_post.get("username")
+        print('username:', username)
         password = get_post.get("password")
+        print('password:', password)
         res = password + settings.SECRET_KEY
         password = hashlib.md5(res.encode("utf-8")).hexdigest()
         gender = get_post.get("gender")
@@ -49,7 +56,7 @@ def user_signup(request):
             return render(request, "user/signup.html", {"msg": "注册失败，用户名已存在!"})
         else:
             User.objects.create(username=username, password=password, gender=gender)
-            return redirect("/user/login/", {"tip2": "注册成功！"})
+            return redirect("/user/login", {"tip2": "注册成功！"})
 
 def user_home(request):
     if request.method == "GET":
