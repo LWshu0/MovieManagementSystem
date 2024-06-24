@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse
 
 # model
-from .models import User, Movie, Like, Review
+from .models import User, Movie, Like, Review, Cast
 
 # Create your views here.
 def initial(request):
@@ -89,3 +89,21 @@ def user_myspace(request, userID):
         'reviews': reviews,
     }
     return render(request, 'user/myspace.html', context)
+
+def user_movie(request, userID, movieID):
+    if request.method == "GET":
+        user = User.objects.get(id=userID)
+        movie = Movie.objects.get(id=movieID)
+        director = movie.director
+        reviews = Review.objects.filter(movie=movie)
+        cast_list = Cast.objects.filter(movie=movie)
+        actors = [cast.actor for cast in cast_list]
+
+        context = {
+            'movie': movie,
+            'director': director,
+            'user': user,
+            'reviews': reviews,
+            'actors': actors
+        }
+        return render(request, 'user/movie.html', context)
