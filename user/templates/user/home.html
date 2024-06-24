@@ -5,62 +5,64 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.css' %} ">
-    <link rel="stylesheet" href="{% static 'user/css/home.css' %}"/>
-
+    <link rel="stylesheet" href="{% static 'user/css/test.css' %}"/>
+    <style>
+        body {
+            background-image: url({% static "user/img/3.webp" %});
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; /* Optional: Makes the background image fixed */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Ensures the body takes the full height of the viewport */
+            width: 100vw; /* Ensures the body takes the full width of the viewport */
+            overflow: auto;
+        }
+    </style>
 </head>
 <body>
-    <div class="hobbies">
-        <div class="stars"></div>
-        <h3 class="hobbies_tit">Love is the one thing that transcends time and space</h3>
-        <h3 class="titles">你好，{{ user.username }}！</h3>
-        <img class="hobbies_bgc" src={% static "user/img/3.webp" %} alt=""/>
+    <div class="container">
+        <div style="grid-column: 1 / 3; background-color: transparent;">
+            <!-- 搜索栏 -->
+            <!-- Make sure the action attribute points to the correct URL for your user_home view -->
+            <form action="" method="post" class="text-center" style="margin: 60px;">
+                {% csrf_token %}
+                <div class="input-group input-group-lg">
+                    <!-- Hidden input to send the user ID -->
+                    <input type="hidden" name="user_id" value="用户ID"/>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="搜索电影"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
 
+        
         <div class='ribbon'>
-            {% comment %} {% if username is None%} {% endcomment %}
             <a href={% url 'user_home' user.id %}><span>首页</span></a>
             <a href= {% url 'user_myspace' user.id %}><span>我的主页</span></a>
             <a href='/user/login'><span>退出登录</span></a>
-            {% comment %} {% endif %} {% endcomment %}
         </div>
-
-        <div class="container">
-            <!-- 搜索栏 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Make sure the action attribute points to the correct URL for your user_home view -->
-                    <form action="" method="post" class="text-center" style="margin-bottom: 20px;">
-                        {% csrf_token %}
-                        <div class="input-group input-group-lg">
-                            <!-- Hidden input to send the user ID -->
-                            <input type="hidden" name="user_id" value="用户ID"/>
-                            <input type="text" id="search" name="search" class="form-control" placeholder="搜索电影"/>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-                <!-- 电影列表 -->
-                <div class="row">
-                {% for movie in movies %}
-                    <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 20px;">
-                        <div class="movie-item" style="color: white;">
-                            <img src="{{ movie.photo.url }}" alt="{{ movie.moviename }}" class="img-responsive">
-                            <h3><a href= "{%url 'user_movie' user.id movie.id %}" style="color: white;">{{ movie.moviename }}</a></h3>
-                            <p>类型: {{ movie.type }}</p>
-                            <p>上映时间: {{ movie.time }}</p>
-                        </div>
+        
+        <div style="grid-column: 1 / 4; background-color: #0000009d;">
+            <!-- 电影列表 -->
+            {% for movie in movies %}
+                <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 20px;margin-top: 20px;">
+                    <div class="movie-item" style="color: white;">
+                        <img src="{{ movie.photo.url }}" alt="{{ movie.moviename }}" class="img-responsive">
+                        <h3><a href= "{%url 'user_movie' user.id movie.id %}" style="color: white;">{{ movie.moviename }}</a></h3>
+                        <p>类型: {{ movie.type }}</p>
+                        <p>上映时间: {{ movie.time }}</p>
                     </div>
-                {% endfor %}
                 </div>
-            {% comment %} </div> {% endcomment %}
+            {% endfor %}
         </div>
     </div>
-    
+
 </body>
 
 <script rel="script" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
