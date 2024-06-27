@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mainsite.middleware.ResponseTimeMiddleware',  # 添加自定义中间件路径
 ]
 
 ROOT_URLCONF = 'mainsite.urls'
